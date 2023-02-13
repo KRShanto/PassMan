@@ -10,11 +10,11 @@ const THIRTY_MINUTES = 30 * 60;
 
 export const authOptions = {
   secret: process.env.SECRET,
-  session: {
-    strategy: "jwt",
-    maxAge: THIRTY_DAYS,
-    updateAge: THIRTY_MINUTES,
-  },
+  // session: {
+  //   strategy: "jwt",
+  //   maxAge: THIRTY_DAYS,
+  //   updateAge: THIRTY_MINUTES,
+  // },
   adapter: MongoDBAdapter(clientPromise),
   theme: {
     colorScheme: "dark",
