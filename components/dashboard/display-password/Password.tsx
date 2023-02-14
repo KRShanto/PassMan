@@ -14,6 +14,7 @@ export default function Password({ password }: { password: IPassword }) {
   const [pass, setPass] = useState(password.password);
 
   const updatePassword = usePasswordsStore((state) => state.updatePassword);
+  const removePassword = usePasswordsStore((state) => state.removePassword);
 
   function showPasswordToggle() {
     setShowPassword(!showPassword);
@@ -21,6 +22,10 @@ export default function Password({ password }: { password: IPassword }) {
 
   function copyToClipboard() {
     navigator.clipboard.writeText(password.password);
+  }
+
+  function editTrue() {
+    setEdit(true);
   }
 
   function afterUpdatePassword(json: ReturnedJsonType, body: any): void {
@@ -33,6 +38,15 @@ export default function Password({ password }: { password: IPassword }) {
       updatePassword(body);
     } else {
       alert("Error updating password");
+      console.log(json);
+    }
+  }
+
+  function afterDeletePassword(json: ReturnedJsonType): void {
+    if (json.type === "SUCCESS") {
+      removePassword(password._id);
+    } else {
+      alert("Error deleting password");
       console.log(json);
     }
   }
@@ -93,11 +107,19 @@ export default function Password({ password }: { password: IPassword }) {
               Update
             </PostButton>
           ) : (
-            <button className="edit" onClick={() => setEdit(true)}>
+            <button className="edit" onClick={editTrue}>
               Edit
             </button>
           )}
-          <button className="delete">Delete</button>
+          {/* <button className="delete">Delete</button> */}
+          <PostButton
+            className="delete"
+            path="/api/password/remove"
+            body={{ _id: password._id }}
+            afterPost={afterDeletePassword}
+          >
+            Delete
+          </PostButton>
         </div>
       </div>
     </li>

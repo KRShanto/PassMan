@@ -18,12 +18,24 @@ const usePasswordsStore = create<PasswordsState>((set) => ({
   addMultiplePasswords: (passwords) =>
     set((state) => ({ passwords: [...state.passwords, ...passwords] })),
 
+  // removePassword: (passwordId) =>
+  //   set((state) => ({
+  //     passwords: state.passwords.filter(
+  //       (password) => password._id !== passwordId
+  //     ),
+  //   })),
+
   removePassword: (passwordId) =>
-    set((state) => ({
-      passwords: state.passwords.filter(
+    set((state) => {
+      const passwords = state.passwords.filter(
         (password) => password._id !== passwordId
-      ),
-    })),
+      );
+
+      console.log("passwordId: ", passwordId);
+      console.log("passwords: ", passwords);
+
+      return { passwords };
+    }),
 
   updatePassword: (password) =>
     set((state) => ({

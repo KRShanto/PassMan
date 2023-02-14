@@ -10,7 +10,7 @@ export default function DisplayPasswords({
   return (
     <ul className="display-passwords">
       {passwords.map((password: IPassword, index: number) => (
-        <Password password={password} key={index} />
+        <Password password={password} key={password._id} />
       ))}
     </ul>
   );

@@ -24,7 +24,7 @@ export default function CreatePassword() {
     });
 
     if (json.type === "SUCCESS") {
-      alert("Password created successfully"); // TODO: make this custom alert
+      // alert("Password created successfully"); // TODO: make this custom alert
 
       // Add the password to the store
       addPassword(json.data);
