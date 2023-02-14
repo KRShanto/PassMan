@@ -4,6 +4,7 @@ import useLoadingStore from "../../stores/loading";
 import usePasswordsStore from "../../stores/password";
 import Popup from "./Popup";
 import { ReturnedJsonType } from "../../types/json";
+import Options from "./Options";
 
 export default function Dashboard() {
   const turnOn = useLoadingStore((state) => state.turnOn);
@@ -34,6 +35,7 @@ export default function Dashboard() {
   return (
     <>
       <Popup />
+      <Options />
       <DisplayPasswords passwords={passwords} />
     </>
   );
