@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Passwords from "./Passwords";
+import DisplayPasswords from "./DisplayPasswords";
 import useLoadingStore from "../../stores/loading";
 import usePasswordsStore from "../../stores/password";
 import Popup from "./Popup";
@@ -34,7 +34,7 @@ export default function Dashboard() {
   return (
     <>
       <Popup />
-      <Passwords passwords={passwords} />
+      <DisplayPasswords passwords={passwords} />
     </>
   );
 }

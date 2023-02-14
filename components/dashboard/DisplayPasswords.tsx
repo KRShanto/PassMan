@@ -5,8 +5,6 @@ import usePopupStore from "../../stores/popup";
 export default function Passwords({ passwords }: { passwords: IPassword[] }) {
   const openPopup = usePopupStore((state) => state.openPopup);
 
-  console.log("Passwords: ", passwords);
-
   return (
     <div>
       <div className="options">
