@@ -5,23 +5,25 @@ import Password from "../../../models/password";
 import { authOptions } from "../auth/[...nextauth]";
 import { getServerSession } from "next-auth/next";
 import UserType from "../../../types/user";
+import response from "../../../lib/response";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  await dbConnect();
+
   const session = await getServerSession(
     req,
     res,
     authOptions as NextAuthOptions
   );
-  await dbConnect();
 
   // ************** Check if user is logged in **************
   if (!session) {
-    return res.status(401).json({
+    return response(res, {
       type: "UNAUTHORIZED",
-      message: "You need to log in first to create password",
+      msg: "You need to log in first to create password",
     });
   }
 
@@ -30,17 +32,15 @@ export default async function handler(
 
   // ************** Check if all the required fields are present **************
   if (!title || !password) {
-    return res
-      .status(400)
-      .json({ type: "INVALID", message: "Title and password are required" });
+    return response(res, {
+      type: "INVALID",
+      msg: "Title and password are required",
+    });
   }
 
   // ************** Create the password **************
-  console.log("User id: ", (session.user as UserType)._id);
-  console.log("User: ", session.user);
   try {
     const newPass = new Password({
-      // userId: session.user?._id ,
       userId: (session.user as UserType)._id,
       title,
       website,
@@ -49,15 +49,16 @@ export default async function handler(
 
     await newPass.save();
 
-    return res.status(201).json({
+    return response(res, {
       type: "SUCCESS",
-      message: "Password created successfully",
+      msg: "Password created successfully",
       data: newPass,
     });
   } catch (error) {
     console.log(error);
-    return res
-      .status(500)
-      .json({ type: "ERROR", message: "Something went wrong" });
+    return response(res, {
+      type: "SERVER_ERROR",
+      msg: "Something went wrong",
+    });
   }
 }

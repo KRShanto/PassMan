@@ -19,7 +19,7 @@ export default function App({
     <SessionProvider session={session}>
       {loading && (
         <div id="preloader">
-          <FadeLoader className="spinner" color="#ff5500" loading={loading} />
+          <FadeLoader className="spinner" color="cyan" loading={loading} />
         </div>
       )}
       <main style={{ opacity: loading ? 0.2 : 1 }}>

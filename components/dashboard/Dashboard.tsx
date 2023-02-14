@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import DisplayPasswords from "./DisplayPasswords";
+import DisplayPasswords from "./display-password/DisplayPasswords";
 import useLoadingStore from "../../stores/loading";
 import usePasswordsStore from "../../stores/password";
 import Popup from "./Popup";
