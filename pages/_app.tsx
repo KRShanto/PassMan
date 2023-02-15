@@ -7,6 +7,12 @@ import useLoadingStore from "../stores/loading";
 /**
   TODO - spinner
   TODO - password encryption
+  TODO - filter passwords
+  TODO - add a password generator
+  TODO - add a password strength meter
+  TODO - show popup when password is copied
+  
+
 
  */
 export default function App({

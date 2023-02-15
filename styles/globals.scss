@@ -1,9 +1,6 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: sans-serif;
   background-color: #1c1c1c;
   color: white;
 }
@@ -15,6 +12,8 @@ a {
 
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 #preloader {
@@ -35,3 +34,6 @@ a {
 
 @import "./form.scss";
 @import "./popup.scss";
+@import "./options.scss";
+@import "./utility.scss";
+@import "./display-passwords.scss";

@@ -4,6 +4,12 @@ import { ReturnedJsonType } from "../../../types/json";
 import PostButton from "../../utils/PostButton";
 import PasswordContent from "./PasswordContent";
 import usePasswordsStore from "../../../stores/password";
+import Image from "next/image";
+
+import ArrowUp from "../../../public/arrow-up.svg";
+import ArrowDown from "../../../public/arrow-down.svg";
+
+const ICON_SIZE = 50;
 
 export default function Password({ password }: { password: IPassword }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -22,6 +28,11 @@ export default function Password({ password }: { password: IPassword }) {
   }
 
   function expandToggle() {
+    if (expand) {
+      // turn off the edit mode
+      cancelEdit();
+    }
+
     setExpand(!expand);
   }
 
@@ -31,6 +42,13 @@ export default function Password({ password }: { password: IPassword }) {
 
   function editTrue() {
     setEdit(true);
+  }
+
+  function cancelEdit() {
+    setEdit(false);
+    setUsername(password.username);
+    setWebsite(password.website);
+    setPass(password.password);
   }
 
   function afterUpdatePassword(json: ReturnedJsonType, body: any): void {
@@ -57,28 +75,44 @@ export default function Password({ password }: { password: IPassword }) {
   }
 
   return (
-    <li className="password-div">
+    <li className={`password-div ${expand ? "expand" : ""}`}>
       <div className="header">
-        <PasswordContent
-          className="username"
-          field="Username"
-          value={username}
-          setValue={setUsername}
-          edit={edit}
-          expand={expand}
-        />
+        <div className="contents">
+          <PasswordContent
+            className="username"
+            field="Username"
+            value={username}
+            setValue={setUsername}
+            edit={edit}
+            expand={expand}
+          />
 
-        <PasswordContent
-          className="website"
-          field="Website"
-          value={website ? website : ""}
-          setValue={setWebsite}
-          edit={edit}
-          expand={expand}
-        />
+          <PasswordContent
+            className="website"
+            field="Website"
+            value={website ? website : ""}
+            setValue={setWebsite}
+            edit={edit}
+            expand={expand}
+          />
+        </div>
 
         <button className="toggle-body" onClick={expandToggle}>
-          {expand ? "▼" : "▲"}
+          {expand ? (
+            <Image
+              src={ArrowDown}
+              alt="arrow down"
+              width={ICON_SIZE}
+              height={ICON_SIZE}
+            />
+          ) : (
+            <Image
+              src={ArrowUp}
+              alt="arrow up"
+              width={ICON_SIZE}
+              height={ICON_SIZE}
+            />
+          )}
         </button>
       </div>
 
@@ -98,11 +132,11 @@ export default function Password({ password }: { password: IPassword }) {
           expand={expand}
         >
           <div className="password-options">
-            <button className="show" onClick={showPasswordToggle}>
+            <button className="show btn orange" onClick={showPasswordToggle}>
               {showPassword ? "Hide" : "Show"}
             </button>
 
-            <button className="copy" onClick={copyToClipboard}>
+            <button className="copy btn orange" onClick={copyToClipboard}>
               Copy
             </button>
           </div>
@@ -110,26 +144,31 @@ export default function Password({ password }: { password: IPassword }) {
 
         <div className="options">
           {edit ? (
-            <PostButton
-              className="update"
-              path="/api/password/update"
-              body={{
-                _id: password._id,
-                username,
-                website,
-                password: pass,
-              }}
-              afterPost={afterUpdatePassword}
-            >
-              Update
-            </PostButton>
+            <>
+              <PostButton
+                className="update btn green"
+                path="/api/password/update"
+                body={{
+                  _id: password._id,
+                  username,
+                  website,
+                  password: pass,
+                }}
+                afterPost={afterUpdatePassword}
+              >
+                Update
+              </PostButton>
+              <button className="cancel btn red" onClick={cancelEdit}>
+                Cancel
+              </button>
+            </>
           ) : (
-            <button className="edit" onClick={editTrue}>
+            <button className="edit btn blue" onClick={editTrue}>
               Edit
             </button>
           )}
           <PostButton
-            className="delete"
+            className="delete btn red"
             path="/api/password/remove"
             body={{ _id: password._id }}
             afterPost={afterDeletePassword}

@@ -20,7 +20,7 @@ export default function PasswordContent({
   children?: React.ReactNode;
 }) {
   return (
-    <div className={className}>
+    <div className={className + " password-content"}>
       {expand && <p className="field">{field}</p>}
       <input
         type={inputType}
