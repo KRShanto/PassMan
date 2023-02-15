@@ -27,13 +27,13 @@ export default async function handler(
   }
 
   // ************** Get the data from the request **************
-  const { _id, title, website, password } = req.body;
+  const { _id, username, website, password } = req.body;
 
   // ************** Check if all the required fields are present **************
-  if (!_id || !title || !password) {
+  if (!_id || !username || !password) {
     return response(res, {
       type: "INVALID",
-      msg: "Title and password and _id are required",
+      msg: "Username and password and _id are required",
     });
   }
 
@@ -42,7 +42,7 @@ export default async function handler(
       { _id },
       {
         $set: {
-          title,
+          username,
           website,
           password,
         },

@@ -8,8 +8,8 @@ export default function DisplayPasswords({
   passwords: IPassword[];
 }) {
   return (
-    <ul className="display-passwords">
-      {passwords.map((password: IPassword, index: number) => (
+    <ul id="display-passwords">
+      {passwords.map((password: IPassword) => (
         <Password password={password} key={password._id} />
       ))}
     </ul>

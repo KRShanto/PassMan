@@ -8,8 +8,9 @@ import usePasswordsStore from "../../../stores/password";
 export default function Password({ password }: { password: IPassword }) {
   const [showPassword, setShowPassword] = useState(false);
   const [edit, setEdit] = useState(false);
+  const [expand, setExpand] = useState(false);
 
-  const [title, setTitle] = useState(password.title);
+  const [username, setUsername] = useState(password.username);
   const [website, setWebsite] = useState(password.website);
   const [pass, setPass] = useState(password.password);
 
@@ -18,6 +19,10 @@ export default function Password({ password }: { password: IPassword }) {
 
   function showPasswordToggle() {
     setShowPassword(!showPassword);
+  }
+
+  function expandToggle() {
+    setExpand(!expand);
   }
 
   function copyToClipboard() {
@@ -30,7 +35,7 @@ export default function Password({ password }: { password: IPassword }) {
 
   function afterUpdatePassword(json: ReturnedJsonType, body: any): void {
     if (json.type === "SUCCESS") {
-      setTitle(body.title);
+      setUsername(body.username);
       setWebsite(body.website);
       setPass(body.password);
       setEdit(false);
@@ -55,11 +60,12 @@ export default function Password({ password }: { password: IPassword }) {
     <li className="password-div">
       <div className="header">
         <PasswordContent
-          className="title"
-          field="Title / Username"
-          value={title}
-          setValue={setTitle}
+          className="username"
+          field="Username"
+          value={username}
+          setValue={setUsername}
           edit={edit}
+          expand={expand}
         />
 
         <PasswordContent
@@ -68,10 +74,20 @@ export default function Password({ password }: { password: IPassword }) {
           value={website ? website : ""}
           setValue={setWebsite}
           edit={edit}
+          expand={expand}
         />
+
+        <button className="toggle-body" onClick={expandToggle}>
+          {expand ? "▼" : "▲"}
+        </button>
       </div>
 
-      <div className="body">
+      <div
+        className="body"
+        style={{
+          height: expand ? "auto" : "0",
+        }}
+      >
         <PasswordContent
           className="password"
           field="Password"
@@ -79,6 +95,7 @@ export default function Password({ password }: { password: IPassword }) {
           setValue={setPass}
           edit={edit}
           inputType={showPassword ? "text" : "password"}
+          expand={expand}
         >
           <div className="password-options">
             <button className="show" onClick={showPasswordToggle}>
@@ -98,7 +115,7 @@ export default function Password({ password }: { password: IPassword }) {
               path="/api/password/update"
               body={{
                 _id: password._id,
-                title,
+                username,
                 website,
                 password: pass,
               }}
@@ -111,7 +128,6 @@ export default function Password({ password }: { password: IPassword }) {
               Edit
             </button>
           )}
-          {/* <button className="delete">Delete</button> */}
           <PostButton
             className="delete"
             path="/api/password/remove"

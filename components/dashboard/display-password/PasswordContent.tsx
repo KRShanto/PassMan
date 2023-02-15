@@ -6,6 +6,7 @@ export default function PasswordContent({
   value,
   setValue,
   edit,
+  expand,
   inputType = "text",
   children,
 }: {
@@ -14,12 +15,13 @@ export default function PasswordContent({
   value: string;
   setValue: (value: string) => void;
   edit: boolean;
+  expand: boolean;
   inputType?: "text" | "password";
   children?: React.ReactNode;
 }) {
   return (
     <div className={className}>
-      <p className="field">{field}</p>
+      {expand && <p className="field">{field}</p>}
       <input
         type={inputType}
         value={value}

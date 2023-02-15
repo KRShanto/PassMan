@@ -5,7 +5,7 @@ export default function Options() {
   const openPopup = usePopupStore((state) => state.openPopup);
 
   return (
-    <div className="options">
+    <div id="options">
       <button
         className="btn blue"
         onClick={() => {

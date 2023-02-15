@@ -28,13 +28,13 @@ export default async function handler(
   }
 
   // ************** Get the data from the request **************
-  const { title, website, password } = req.body;
+  const {  username, website, password } = req.body;
 
   // ************** Check if all the required fields are present **************
-  if (!title || !password) {
+  if (!username || !password) {
     return response(res, {
       type: "INVALID",
-      msg: "Title and password are required",
+      msg: "Username and password are required",
     });
   }
 
@@ -42,7 +42,7 @@ export default async function handler(
   try {
     const newPass = new Password({
       userId: (session.user as UserType)._id,
-      title,
+      username,
       website,
       password,
     });

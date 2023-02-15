@@ -3,7 +3,7 @@ import mongoose, { Schema, Types } from "mongoose";
 export interface IPassword {
   _id: string;
   userId: string;
-  title: string; // Title/username of the password
+  username: string;
   website?: string;
   password: string;
   createdAt: Date;
@@ -11,7 +11,7 @@ export interface IPassword {
 
 const PasswordSchema: Schema = new Schema({
   userId: { type: Types.ObjectId, required: true, ref: "User" },
-  title: { type: String, required: true },
+  username: { type: String, required: true },
   website: { type: String, required: false },
   password: { type: String, required: true },
   createdAt: { type: Date, required: false, default: Date.now },
