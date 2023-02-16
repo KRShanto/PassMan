@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { ReturnedJsonType } from "../../types/json";
-import useLoadingStore from "../../stores/loading";
+import { ReturnedJsonType } from "../../../types/json";
+import useLoadingStore from "../../../stores/loading";
 
 export type SendType = (path: string, body: any) => Promise<ReturnedJsonType>;
 

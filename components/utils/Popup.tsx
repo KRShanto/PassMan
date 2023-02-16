@@ -6,10 +6,10 @@ export default function Popup({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <div className="popup">
+      <div id="popup">
         {children}
         <button
-          className="btn danger"
+          className="btn red cancel"
           onClick={() => {
             closePopup();
           }}

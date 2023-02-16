@@ -34,7 +34,6 @@ export default function Dashboard() {
 
   return (
     <>
-      <Popup />
       <Options />
       <DisplayPasswords passwords={passwords} />
     </>

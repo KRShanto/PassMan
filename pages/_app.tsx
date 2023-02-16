@@ -3,6 +3,8 @@ import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
 import { FadeLoader } from "react-spinners";
 import useLoadingStore from "../stores/loading";
+import usePopupStore from "../stores/popup";
+import Popup from "../components/dashboard/Popup";
 
 /**
   TODO - spinner
@@ -20,6 +22,7 @@ export default function App({
   pageProps: { session, ...pageProps },
 }: AppProps) {
   const loading = useLoadingStore((state) => state.loading);
+  const popup = usePopupStore((state) => state.popup);
 
   return (
     <SessionProvider session={session}>
@@ -28,7 +31,9 @@ export default function App({
           <FadeLoader className="spinner" color="cyan" loading={loading} />
         </div>
       )}
-      <main style={{ opacity: loading ? 0.2 : 1 }}>
+
+      <Popup />
+      <main style={{ opacity: loading || popup ? 0.2 : 1 }}>
         <Component {...pageProps} />
       </main>
     </SessionProvider>

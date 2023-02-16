@@ -100,15 +100,15 @@ export default function Password({ password }: { password: IPassword }) {
         <button className="toggle-body" onClick={expandToggle}>
           {expand ? (
             <Image
-              src={ArrowDown}
-              alt="arrow down"
+              src={ArrowUp}
+              alt="arrow up"
               width={ICON_SIZE}
               height={ICON_SIZE}
             />
           ) : (
             <Image
-              src={ArrowUp}
-              alt="arrow up"
+              src={ArrowDown}
+              alt="arrow down"
               width={ICON_SIZE}
               height={ICON_SIZE}
             />

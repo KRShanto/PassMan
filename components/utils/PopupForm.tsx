@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Popup from "./Popup";
-import Form from "./Form";
-import { SendType } from "./Form";
+import Form from "./form/Form";
+import { SendType } from "./form/Form";
 import usePopupStore from "../../stores/popup";
 
 export default function PopupForm({

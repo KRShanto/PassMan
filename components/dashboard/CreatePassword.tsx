@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SendType } from "../utils/Form";
+import { SendType } from "../utils/form/Form";
 import PopupForm from "../utils/PopupForm";
 import usePasswordsStore from "../../stores/password";
 
@@ -39,7 +39,7 @@ export default function CreatePassword() {
 
   return (
     <>
-      <PopupForm submitHandler={handleSubmit} className="create-password">
+      <PopupForm submitHandler={handleSubmit}>
         <h2 className="heading">Create Password</h2>
 
         <div className="form-wrapper label-input">
@@ -72,7 +72,9 @@ export default function CreatePassword() {
           />
         </div>
 
-        <button type="submit">Create</button>
+        <button type="submit" className="btn green">
+          Create
+        </button>
       </PopupForm>
     </>
   );
