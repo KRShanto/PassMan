@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { SendType } from "../utils/form/Form";
 import PopupForm from "../utils/PopupForm";
 import usePasswordsStore from "../../stores/password";
+import Input from "../utils/form/Input";
+import Password from "../utils/form/Password";
 
 export default function CreatePassword() {
   const [username, setUsername] = useState("");
@@ -42,35 +44,21 @@ export default function CreatePassword() {
       <PopupForm submitHandler={handleSubmit}>
         <h2 className="heading">Create Password</h2>
 
-        <div className="form-wrapper label-input">
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
+        <Input
+          value={username}
+          setValue={setUsername}
+          label="Username"
+          required
+        />
 
-        <div className="form-wrapper label-input">
-          <label htmlFor="website">Website</label>
-          <input
-            type="text"
-            id="website"
-            value={website}
-            onChange={(e) => setWebsite(e.target.value)}
-          />
-        </div>
+        <Input value={website} setValue={setWebsite} label="Website" />
 
-        <div className="form-wrapper label-input">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+        <Password
+          value={password}
+          setValue={setPassword}
+          label="Password"
+          required
+        />
 
         <button type="submit" className="btn green">
           Create
