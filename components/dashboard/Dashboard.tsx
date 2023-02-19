@@ -22,10 +22,9 @@ export default function Dashboard() {
     const res = await fetch("/api/password/get");
     const json: ReturnedJsonType = await res.json();
 
-    turnOff();
-
     if (json.type === "SUCCESS") {
       addMultiplePasswords(json.data);
+      turnOff();
     }
   };
 
