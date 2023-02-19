@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IPassword } from "../../../models/password";
 import { ReturnedJsonType } from "../../../types/json";
 import PostButton from "../../utils/PostButton";
@@ -19,9 +19,18 @@ export default function Password({ password }: { password: IPassword }) {
   const [username, setUsername] = useState(password.username);
   const [website, setWebsite] = useState(password.website);
   const [pass, setPass] = useState(password.password);
+  const [recentlyCopied, setRecentlyCopied] = useState(false);
 
   const updatePassword = usePasswordsStore((state) => state.updatePassword);
   const removePassword = usePasswordsStore((state) => state.removePassword);
+
+  useEffect(() => {
+    if (recentlyCopied) {
+      setTimeout(() => {
+        setRecentlyCopied(false);
+      }, 2000);
+    }
+  }, [recentlyCopied]);
 
   function showPasswordToggle() {
     setShowPassword(!showPassword);
@@ -38,6 +47,7 @@ export default function Password({ password }: { password: IPassword }) {
 
   function copyToClipboard() {
     navigator.clipboard.writeText(password.password);
+    setRecentlyCopied(true);
   }
 
   function editTrue() {
@@ -136,8 +146,11 @@ export default function Password({ password }: { password: IPassword }) {
               {showPassword ? "Hide" : "Show"}
             </button>
 
-            <button className="copy btn orange" onClick={copyToClipboard}>
-              Copy
+            <button
+              className={`copy btn ${recentlyCopied ? "green" : "orange"}`}
+              onClick={copyToClipboard}
+            >
+              {recentlyCopied ? "Copied" : "Copy"}
             </button>
           </div>
         </PasswordContent>
