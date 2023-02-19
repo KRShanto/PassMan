@@ -1,20 +1,11 @@
-import { MongoClient } from "mongodb";
-import NextAuth, { NextAuthOptions } from "next-auth";
+import NextAuth from "next-auth";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import EmailProvider from "next-auth/providers/email";
+import GoogleProvider from "next-auth/providers/google";
 import clientPromise from "../../../lib/clientPromise";
-import UserType from "../../../types/user";
-
-const THIRTY_DAYS = 30 * 24 * 60 * 60;
-const THIRTY_MINUTES = 30 * 60;
 
 export const authOptions = {
   secret: process.env.SECRET,
-  // session: {
-  //   strategy: "jwt",
-  //   maxAge: THIRTY_DAYS,
-  //   updateAge: THIRTY_MINUTES,
-  // },
   adapter: MongoDBAdapter(clientPromise),
   theme: {
     colorScheme: "dark",
@@ -38,6 +29,10 @@ export const authOptions = {
         },
       },
       from: process.env.EMAIL_FROM,
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
 };
