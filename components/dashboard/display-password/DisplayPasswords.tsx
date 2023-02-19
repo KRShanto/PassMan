@@ -7,6 +7,10 @@ export default function DisplayPasswords({
 }: {
   passwords: IPassword[];
 }) {
+  if (passwords.length === 0) {
+    return <p id="no-passwords">No passwords to display</p>;
+  }
+
   return (
     <ul id="display-passwords">
       {passwords.map((password: IPassword) => (

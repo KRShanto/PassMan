@@ -7,6 +7,7 @@ import { ReturnedJsonType } from "../../types/json";
 import Options from "./Options";
 
 export default function Dashboard() {
+  const loading = useLoadingStore((state) => state.loading);
   const turnOn = useLoadingStore((state) => state.turnOn);
   const turnOff = useLoadingStore((state) => state.turnOff);
 
@@ -35,7 +36,7 @@ export default function Dashboard() {
   return (
     <>
       <Options />
-      <DisplayPasswords passwords={passwords} />
+      {!loading && <DisplayPasswords passwords={passwords} />}
     </>
   );
 }
