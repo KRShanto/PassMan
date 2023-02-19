@@ -1,13 +1,16 @@
 import React from "react";
 import { IPassword } from "../../../models/password";
 import Password from "./Password";
+import usePasswordsStore from "../../../stores/password";
 
 export default function DisplayPasswords({
-  passwords,
+  noPasswords,
 }: {
-  passwords: IPassword[];
+  noPasswords: null | boolean;
 }) {
-  if (passwords.length === 0) {
+  const passwords = usePasswordsStore((state) => state.passwords);
+
+  if (noPasswords === false) {
     return <p id="no-passwords">No passwords to display</p>;
   }
 
