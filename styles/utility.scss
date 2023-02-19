@@ -65,3 +65,13 @@
     );
   }
 }
+
+.disable {
+  cursor: not-allowed;
+  // linear gradient background gray
+  background-image: linear-gradient(
+    to bottom,
+    rgb(171, 171, 171),
+    rgb(69, 68, 68)
+  );
+}

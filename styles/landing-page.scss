@@ -1,0 +1,75 @@
+#LandingPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 2rem;
+
+  .hero {
+    .logo {
+      // border: 2px solid aquamarine;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .text {
+        // gradient text
+        background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -moz-background-clip: text;
+        -moz-text-fill-color: transparent;
+        font-size: 3rem;
+        // gradient text shadow
+      }
+    }
+
+    .short-details {
+      margin-top: 20px;
+      font-size: 25px;
+      font-weight: bold;
+      // light white
+      color: rgba(255, 255, 255, 0.822);
+    }
+  }
+
+  .features {
+    margin-top: 20px;
+    .header {
+      font-size: 2rem;
+      font-weight: bold;
+      color: cyan;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 2rem 0;
+        font-size: 1.7rem;
+        font-weight: bold;
+        color: rgba(255, 255, 255, 0.862);
+        margin-left: 10rem;
+
+        .future {
+          color: #0099ff;
+        }
+      }
+    }
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+// #0099ff
