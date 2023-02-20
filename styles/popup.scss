@@ -9,8 +9,15 @@
   z-index: 1000;
   display: flex;
   flex-direction: column;
+  // width: 80%;
 
   .cancel {
     margin-top: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  #popup {
+    width: 80%;
   }
 }

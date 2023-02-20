@@ -13,7 +13,7 @@ export default function Options() {
           openPopup("CreatePassword");
         }}
       >
-        Create Password
+        Create
       </button>
 
       <button

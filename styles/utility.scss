@@ -68,10 +68,26 @@
 
 .disable {
   cursor: not-allowed;
-  // linear gradient background gray
   background-image: linear-gradient(
     to bottom,
     rgb(171, 171, 171),
     rgb(69, 68, 68)
   );
+}
+
+// 1000px
+@media (max-width: 1000px) {
+  .btn {
+    padding: 7px 20px;
+    font-size: 18px;
+    border-radius: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .btn {
+    padding: 6px 15px;
+    font-size: 16px;
+    border-radius: 28px;
+  }
 }
