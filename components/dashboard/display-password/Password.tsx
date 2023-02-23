@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { IPassword } from "../../../models/password";
+// import { IPassword } from "../../../models/password";
+import { PasswordType } from "../../../types/password";
 import { ReturnedJsonType } from "../../../types/json";
 import PostButton from "../../utils/PostButton";
 import PasswordContent from "./PasswordContent";
@@ -11,7 +12,7 @@ import ArrowDown from "../../../public/arrow-down.svg";
 
 const ICON_SIZE = 50;
 
-export default function Password({ password }: { password: IPassword }) {
+export default function Password({ password }: { password: PasswordType }) {
   const [showPassword, setShowPassword] = useState(false);
   const [edit, setEdit] = useState(false);
   const [expand, setExpand] = useState(false);

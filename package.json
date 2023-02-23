@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next-auth/mongodb-adapter": "^1.1.1",
+    "crypto-js": "^4.1.1",
     "generate-password": "^1.7.0",
     "moment": "^2.29.4",
     "mongoose": "^6.9.1",

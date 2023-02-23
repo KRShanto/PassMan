@@ -28,10 +28,10 @@ export default async function handler(
   }
 
   // ************** Get the data from the request **************
-  const {  username, website, password } = req.body;
+  const { username, website, password } = req.body;
 
   // ************** Check if all the required fields are present **************
-  if (!username || !password) {
+  if (!username || !password || !website) {
     return response(res, {
       type: "INVALID",
       msg: "Username and password are required",

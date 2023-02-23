@@ -1,12 +1,12 @@
 import { create } from "zustand";
-import { IPassword } from "../models/password";
+import { PasswordType } from "../types/password";
 
 interface PasswordsState {
-  passwords: IPassword[];
-  addPassword: (password: IPassword) => void;
-  addMultiplePasswords: (passwords: IPassword[]) => void;
+  passwords: PasswordType[];
+  addPassword: (password: PasswordType) => void;
+  addMultiplePasswords: (passwords: PasswordType[]) => void;
   removePassword: (passwordId: string) => void;
-  updatePassword: (password: IPassword) => void;
+  updatePassword: (password: PasswordType) => void;
 }
 
 const usePasswordsStore = create<PasswordsState>((set) => ({

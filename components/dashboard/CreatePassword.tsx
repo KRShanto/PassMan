@@ -14,7 +14,7 @@ export default function CreatePassword() {
 
   const handleSubmit = async (send: SendType) => {
     // Check if the Username and password are not empty
-    if (username === "" || password === "") {
+    if (username === "" || password === "" || website === "") {
       alert("Username and password cannot be empty"); // TODO: make this custom alert
       return;
     }
@@ -29,7 +29,16 @@ export default function CreatePassword() {
       // alert("Password created successfully"); // TODO: make this custom alert
 
       // Add the password to the store
-      addPassword(json.data);
+      // addPassword(json.data);
+      // add every field to the store (from json.data) accept the password
+      addPassword({
+        _id: json.data._id,
+        username: json.data.username,
+        website: json.data.website,
+        createdAt: json.data.createdAt,
+        password,
+        userId: json.data.userId,
+      });
     } else {
       alert("Error creating password"); // TODO: make this custom alert
     }
